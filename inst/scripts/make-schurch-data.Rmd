@@ -1,0 +1,111 @@
+---
+title: Processing the Schurch Highly Replicated RNA-seq Data
+author: Constantin Ahlmann-Eltze
+date: "`r Sys.Date()`"
+output:
+  BiocStyle::html_document:
+    titlecaps: false
+    toc_float: true
+---
+
+
+```{r style, echo=FALSE, results='hide', message=FALSE}
+library(BiocStyle)
+knitr::opts_chunk$set(error=FALSE, message=FALSE, warning=FALSE)
+```
+
+# Downloading the count data
+
+We obtain a copy of the processed counts from the GitHub repo of the Barton group.
+
+```{r}
+library(BiocFileCache)
+bfc <- BiocFileCache("raw_data", ask = FALSE)
+snf_data_path <- bfcrpath(bfc,
+    file.path("https://github.com/bartongroup/profDGE48/raw",
+              "375dc0d57d9d1fa96a4245a6530e0fda34305891/Preprocessed_data",
+              "Snf2_countdata.tar.gz"))
+wt_data_path <- bfcrpath(bfc, 
+    file.path("https://github.com/bartongroup/profDGE48/raw",
+              "375dc0d57d9d1fa96a4245a6530e0fda34305891/Preprocessed_data",
+              "WT_countdata.tar.gz"))
+bad_repl_path <- bfcrpath(bfc, 
+    file.path("https://github.com/bartongroup/profDGE48/raw",
+              "375dc0d57d9d1fa96a4245a6530e0fda34305891/Bad_replicate_identification",
+              "exclude.lst"))
+tmp_file_folder <- file.path(tempdir(), "/count_files")
+untar(snf_data_path, exdir=tmp_file_folder)
+untar(wt_data_path , exdir=tmp_file_folder)
+```
+
+
+# Load all the files
+
+```{r}
+library(tidyverse)
+
+wt_cnts <- list.files(tmp_file_folder, pattern = "^WT") %>%
+  map_df(function(file_name){
+    read_tsv(file.path(tmp_file_folder, file_name), 
+             col_names = c("GeneName", "Count"), col_types = "ci") %>%
+      mutate(file_name = file_name,
+             Condition = "wildtype",
+             replicate = as.numeric(str_match(file_name, "rep(\\d{2})_")[,2]))
+  })
+
+ko_cnts <- list.files(tmp_file_folder, pattern = "^Snf") %>%
+  map_df(function(file_name){
+    read_tsv(file.path(tmp_file_folder, file_name), 
+             col_names = c("GeneName", "Count"), col_types = "ci") %>%
+      mutate(file_name = file_name,
+             Condition = "knockout",
+             replicate = as.numeric(str_match(file_name, "rep(\\d{2})_")[,2]))
+  })
+
+bad_replicates <- paste0(read_lines(bad_repl_path), ".gbgout")
+bad_genes <- c("no_feature", "ambiguous", "too_low_aQual", 
+               "not_aligned", "alignment_not_unique")
+all_cnts <- bind_rows(wt_cnts, ko_cnts) %>%
+  filter(! file_name %in% bad_replicates) %>%
+  filter(! GeneName %in% bad_genes)
+
+```
+
+Turn the tidy dataset into a SummarizedExperiment
+
+```{r}
+library(SummarizedExperiment)
+cnt_mat <-  all_cnts %>%
+  mutate(name = paste0(Condition, "_", sprintf("%02i", replicate))) %>%
+  dplyr::select(GeneName, Count, name) %>%
+  pivot_wider(GeneName, names_from = name, values_from = Count, 
+              values_fill = list(Count = NA)) %>%
+  column_to_rownames("GeneName") %>%
+  as.matrix()
+
+col_data <- all_cnts %>%
+  dplyr::select(file_name, condition = Condition, replicate) %>%
+  mutate(name = paste0(condition, "_", sprintf("%02i", replicate))) %>% 
+  distinct
+
+
+se <- SummarizedExperiment(SimpleList(counts = cnt_mat), 
+                           colData = as.data.frame(col_data))
+
+se
+```
+
+
+```{r}
+repath <- file.path("final_data", "schurch")
+dir.create(repath, showWarnings=FALSE, recursive=TRUE)
+saveRDS(se, file=file.path(repath, "summarized_experiment.rds"))
+```
+
+
+# Session information
+
+```{r}
+sessionInfo()
+```
+
