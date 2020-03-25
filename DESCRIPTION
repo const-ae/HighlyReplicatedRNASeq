@@ -9,7 +9,12 @@ Description: Gene-level count matrix data for bulk RNA-seq dataset with
     objects.
 License: CC0
 Encoding: UTF-8
-LazyData: true
+Depends:
+    SummarizedExperiment
+Suggests:
+    BiocStyle,
+    BiocFileCache,
+    
 biocViews: 
     ExperimentHub,
     ExperimentData, 
