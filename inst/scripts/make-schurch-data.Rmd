@@ -42,7 +42,12 @@ untar(wt_data_path , exdir=tmp_file_folder)
 # Load all the files
 
 ```{r}
-library(tidyverse)
+library(dplyr)
+library(stringr)
+library(readr)
+library(tidyr)
+library(purrr)
+library(tibble)
 
 wt_cnts <- list.files(tmp_file_folder, pattern = "^WT") %>%
   map_df(function(file_name){
