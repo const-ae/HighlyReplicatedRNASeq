@@ -31,6 +31,18 @@ schurch_se <- HighlyReplicatedRNASeq::Schurch16()
 schurch_se
 ```
 
+An alternative approach that achieves exactly the same is to load the data
+directly from ExperimentHub
+
+```{r}
+library(ExperimentHub)
+eh <- ExperimentHub()
+records <- query(eh, "HighlyReplicatedRNASeq")
+records[1]           ## display the metadata for the first resource
+records[["EH3299"]]  ## load the resource by ID
+```
+
+
 # Explore Data
 
 It has 7126 genes and 86 samples. The counts are between 0 and 467,000.
