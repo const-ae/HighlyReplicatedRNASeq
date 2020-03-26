@@ -10,15 +10,35 @@ Schurch16(hub = ExperimentHub())
 Schurch16_metadata(hub = ExperimentHub())
 }
 \arguments{
-\item{hub}{a}
+\item{hub}{an \link{ExperimentHub} object that is used
+to load the resource "EH3299".
+Default: \code{\link[=ExperimentHub]{ExperimentHub()}}}
+}
+\value{
+\describe{
+\item{\code{Schurch16()}}{returns a \link{SummarizedExperiment} with 7126 genes
+and 86 samples.}
+\item{\code{Schurch16_metadata()}}{returns a \link{ExperimentHub} object with the
+metadata on the Schurch16 dataset.}
+}
 }
 \description{
-Get the RNA-seq counts from Schurch et al. (2016)
+The data contains bulk RNA-seq count on 86 samples in two conditions.
+The first condition is wild type S. \emph{cerevisiae} (taxonomic id: 1247190).
+The second condition is the same strain with a snf2 knockout.
+}
+\details{
+Schurch et al. originally generated this dataset to benchmark
+RNA-seq differential expression tools and find out how many
+replicates are necessary to detect most differentially
+expressed genes. The data that is returned by this packge
+comes from the GitHub \link{repository}(https://github.com/bartongroup/ profDGE48)
+that accompanied the study.
 }
 \references{
 Schurch, N. J., Schofield, P., Gierliński, M., Cole, C., Sherstnev, A., Singh, V., … Barton, G. J. (2016).
 How many biological replicates are needed in an RNA-seq experiment and which differential expression
-tool should you use? Rna, 22(6), 839–851. https://doi.org/10.1261/rna.053959.115
+tool should you use? \emph{RNA}, 22(6), 839–851. https://doi.org/10.1261/rna.053959.115
 }
 \author{
 Constantin Ahlmann-Eltze

@@ -2,3 +2,4 @@
 
 export(Schurch16)
 export(Schurch16_metadata)
+importFrom(ExperimentHub,ExperimentHub)
