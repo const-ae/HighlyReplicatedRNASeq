@@ -35,6 +35,16 @@ expressed genes. The data that is returned by this packge
 comes from the GitHub \link{repository}(https://github.com/bartongroup/ profDGE48)
 that accompanied the study.
 }
+\examples{
+  Schurch16_metadata()
+
+  se <- Schurch16()
+
+  dim(se)
+  colData(se)
+  summary(c(assay(se, "counts")))
+
+}
 \references{
 Schurch, N. J., Schofield, P., Gierliński, M., Cole, C., Sherstnev, A., Singh, V., … Barton, G. J. (2016).
 How many biological replicates are needed in an RNA-seq experiment and which differential expression

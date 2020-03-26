@@ -27,6 +27,15 @@
 #' }
 #'
 #'
+#' @examples
+#'   Schurch16_metadata()
+#'
+#'   se <- Schurch16()
+#'
+#'   dim(se)
+#'   colData(se)
+#'   summary(c(assay(se, "counts")))
+#'
 #' @author Constantin Ahlmann-Eltze
 #'
 #' @references
