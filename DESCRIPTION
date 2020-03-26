@@ -7,7 +7,7 @@ Authors@R: person("Constantin", "Ahlmann-Eltze", email = "artjom31415@googlemail
 Description: Gene-level count matrix data for bulk RNA-seq dataset with
     many replicates. The data are provided in easy to use SummarizedExperiment
     objects.
-License: CC0
+License: MIT + file LICENSE
 Encoding: UTF-8
 Depends:
     SummarizedExperiment
