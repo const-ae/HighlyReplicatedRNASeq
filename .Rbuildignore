@@ -1,3 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
+inst/scripts/final_data
+inst/scripts/raw_data
+inst/scripts/*.html
