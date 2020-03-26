@@ -7,6 +7,8 @@ Authors@R: person("Constantin", "Ahlmann-Eltze", email = "artjom31415@googlemail
 Description: Gene-level count matrix data for bulk RNA-seq dataset with
     many replicates. The data are provided as easy to use SummarizedExperiment
     objects.
+URL: https://github.com/const-ae/HighlyReplicatedRNASeq
+BugReports: https://github.com/const-ae/HighlyReplicatedRNASeq/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 Depends:
