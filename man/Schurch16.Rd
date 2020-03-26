@@ -32,7 +32,7 @@ Schurch et al. originally generated this dataset to benchmark
 RNA-seq differential expression tools and find out how many
 replicates are necessary to detect most differentially
 expressed genes. The data that is returned by this packge
-comes from the GitHub \link{repository}(https://github.com/bartongroup/ profDGE48)
+comes from the GitHub  \href{https://github.com/bartongroup/profDGE48}{repository}
 that accompanied the study.
 }
 \examples{

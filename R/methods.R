@@ -15,7 +15,7 @@
 #'   RNA-seq differential expression tools and find out how many
 #'   replicates are necessary to detect most differentially
 #'   expressed genes. The data that is returned by this packge
-#'   comes from the GitHub [repository](https://github.com/bartongroup/ profDGE48)
+#'   comes from the GitHub  [repository](https://github.com/bartongroup/profDGE48)
 #'   that accompanied the study.
 #'
 #' @return
