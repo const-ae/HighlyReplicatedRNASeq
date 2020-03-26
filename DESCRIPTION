@@ -14,7 +14,9 @@ Depends:
     ExperimentHub
 Suggests:
     BiocStyle,
-    BiocFileCache
+    BiocFileCache,
+    knitr,
+    rmarkdown
 biocViews: 
     ExperimentHub,
     ExperimentData, 
@@ -23,3 +25,4 @@ biocViews:
     RNASeqData
 RoxygenNote: 7.1.0
 Roxygen: list(markdown = TRUE)
+VignetteBuilder: knitr

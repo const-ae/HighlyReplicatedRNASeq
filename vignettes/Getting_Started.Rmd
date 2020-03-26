@@ -1,0 +1,91 @@
+---
+title: "HighlyReplicatedRNASeq"
+author: Constantin Ahlmann-Eltze
+date: "`r Sys.Date()`"
+output: 
+  BiocStyle::html_document:
+     toc_float: true
+vignette: >
+  %\VignetteIndexEntry{Exploring the 86 bulk RNA-seq samples from the Schurch et al. (2016) study}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The `r Biocpkg("HighlyReplicatedRNASeq")` package provides functions to access the count matrix from bulk RNA-seq studies with many replicates. For example,the study from Schurch et al. (2016) has data on 86 samples of S. *cerevisiae* in two conditions.
+
+# Load Data
+
+To load the dataset, call the `Schurch16()` function. It returns a `r Biocpkg("SummarizedExperiment")`:
+
+```{r}
+schurch_se <- HighlyReplicatedRNASeq::Schurch16()
+
+schurch_se
+```
+
+# Explore Data
+
+It has 7126 genes and 86 samples. The counts are between 0 and 467,000.
+
+```{r}
+summary(c(assay(schurch_se, "counts")))
+```
+
+To make the data easier to work with, I will "normalize" the data. First I divide it by the mean of each sample to account for the differential sequencing depth. Then, I apply the `log()` transformation and add a small number to avoid taking the logarithm of 0.
+
+```{r}
+norm_counts <- assay(schurch_se, "counts")
+norm_counts <- log(norm_counts / colMeans(norm_counts) + 0.001)
+```
+
+The histogram of the transformed data looks very smooth:
+
+```{r}
+hist(norm_counts, breaks = 100)
+```
+
+
+Finally, let us take a look at the MA-plot of the data and the volcano plot:
+
+```{r}
+wt_mean <- rowMeans(norm_counts[, schurch_se$condition == "wildtype"])
+ko_mean <- rowMeans(norm_counts[, schurch_se$condition == "knockout"])
+
+plot((wt_mean+ ko_mean) / 2, wt_mean - ko_mean,
+     pch = 16, cex = 0.4, col = "#00000050", frame.plot = FALSE)
+abline(h = 0)
+
+pvalues <- sapply(seq_len(nrow(norm_counts)), function(idx){
+  tryCatch(
+    t.test(norm_counts[idx, schurch_se$condition == "wildtype"], 
+         norm_counts[idx, schurch_se$condition == "knockout"])$p.value,
+  error = function(err) NA)
+})
+
+plot(wt_mean - ko_mean, - log10(pvalues),
+     pch = 16, cex = 0.5, col = "#00000050", frame.plot = FALSE)
+```
+
+
+
+# Reference
+
+* Schurch, N. J., Schofield, P., Gierliński, M., Cole, C., Sherstnev, A., Singh, V., … Barton, G. J. (2016). How many biological replicates are needed in an RNA-seq experiment and which differential expression tool should you use? Rna, 22(6), 839–851. https://doi.org/10.1261/rna.053959.115
+
+
+
+# Session Info
+
+```{r}
+sessionInfo()
+```
+
+

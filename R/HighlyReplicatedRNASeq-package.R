@@ -19,5 +19,6 @@
 NULL
 
 
+#' @importFrom SummarizedExperiment SummarizedExperiment
 #' @importFrom ExperimentHub ExperimentHub
 NULL
