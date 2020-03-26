@@ -10,15 +10,16 @@ Description: Gene-level count matrix data for bulk RNA-seq dataset with
 License: MIT + file LICENSE
 Encoding: UTF-8
 Depends:
-    SummarizedExperiment
+    SummarizedExperiment,
+    ExperimentHub
 Suggests:
     BiocStyle,
-    BiocFileCache,
-    
+    BiocFileCache
 biocViews: 
     ExperimentHub,
     ExperimentData, 
     ExpressionData, 
     SequencingData, 
     RNASeqData
-
+RoxygenNote: 7.1.0
+Roxygen: list(markdown = TRUE)
