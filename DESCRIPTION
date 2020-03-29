@@ -6,7 +6,8 @@ Authors@R: person("Constantin", "Ahlmann-Eltze", email = "artjom31415@googlemail
                     role = c("aut", "cre"), comment = c(ORCID = "0000-0002-3762-068X"))
 Description: Gene-level count matrix data for bulk RNA-seq dataset with
     many replicates. The data are provided as easy to use SummarizedExperiment
-    objects.
+    objects. The source data that is made accessible through this package comes
+    from https://github.com/bartongroup/profDGE48.
 URL: https://github.com/const-ae/HighlyReplicatedRNASeq
 BugReports: https://github.com/const-ae/HighlyReplicatedRNASeq/issues
 License: MIT + file LICENSE
