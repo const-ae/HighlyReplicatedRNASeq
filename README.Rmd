@@ -26,7 +26,16 @@ benchmarking tools designed to handle RNA-seq data.
 
 ## Installation
 
-You can install the released version of HighlyReplicatedRNASeq from [Github](https://github.com/const-ae/HighlyReplicatedRNASeq)
+You can install the latest version of `r BiocStyle::Biocpkg("HighlyReplicatedRNASeq")` with
+
+``` r
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("HighlyReplicatedRNASeq")
+```
+
+To get the latest development version, install the package from [Github](https://github.com/const-ae/HighlyReplicatedRNASeq)
 
 ``` r
 # install.packages("devtools")

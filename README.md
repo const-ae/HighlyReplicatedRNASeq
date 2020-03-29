@@ -15,7 +15,18 @@ valuable for benchmarking tools designed to handle RNA-seq data.
 
 ## Installation
 
-You can install the released version of HighlyReplicatedRNASeq from
+You can install the latest version of
+*[HighlyReplicatedRNASeq](https://bioconductor.org/packages/3.11/HighlyReplicatedRNASeq)*
+with
+
+``` r
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("HighlyReplicatedRNASeq")
+```
+
+To get the latest development version, install the package from
 [Github](https://github.com/const-ae/HighlyReplicatedRNASeq)
 
 ``` r
