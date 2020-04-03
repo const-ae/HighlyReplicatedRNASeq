@@ -39,7 +39,8 @@ library(ExperimentHub)
 eh <- ExperimentHub()
 records <- query(eh, "HighlyReplicatedRNASeq")
 records[1]           ## display the metadata for the first resource
-records[["EH3299"]]  ## load the resource by ID
+count_matrix <- records[["EH3315"]]  ## load the count matrix by ID
+count_matrix[1:10, 1:5]
 ```
 
 
