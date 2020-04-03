@@ -23,7 +23,8 @@ write.csv(file="../extdata/metadata-schurch.csv",
     Maintainer = "Constantin Ahlmann-Eltze <artjom31415@googlemail.com>",
     RDataClass = c("matrix", "data.frame"),
     DispatchClass = "Rds",
-    RDataPath = "HighlyReplicatedRNASeq/",
+    RDataPath = c("HighlyReplicatedRNASeq/schurch/count_matrix.rds",
+                  "HighlyReplicatedRNASeq/schurch/column_data.rds"),
 
     stringsAsFactors = FALSE
   ), row.names = FALSE)
