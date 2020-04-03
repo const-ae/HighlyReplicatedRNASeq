@@ -6,7 +6,7 @@
 #' The second condition is the same strain with a snf2 knockout.
 #'
 #' @param hub an [ExperimentHub] object that is used
-#'   to load the resource "EH3299".
+#'   to load the resource "EH3315" and "EH3316".
 #'   Default: [ExperimentHub()]
 #'
 #'

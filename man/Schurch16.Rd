@@ -11,7 +11,7 @@ Schurch16_metadata(hub = ExperimentHub())
 }
 \arguments{
 \item{hub}{an \link{ExperimentHub} object that is used
-to load the resource "EH3299".
+to load the resource "EH3315" and "EH3316".
 Default: \code{\link[=ExperimentHub]{ExperimentHub()}}}
 }
 \value{
