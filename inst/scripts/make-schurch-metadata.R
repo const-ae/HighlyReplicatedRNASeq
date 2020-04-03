@@ -3,9 +3,9 @@
 # and `?ExperimentHubData::makeExperimentHubMetadata`
 write.csv(file="../extdata/metadata-schurch.csv",
   data.frame(
-    Title = "Schurch S. cerevesiae Highly Replicated Bulk RNA-Seq",
-    Description = paste0(
-      "This dataset contains bulk RNA-sequencing data from 86 S. cerevisiae samples ",
+    Title = paste0("Schurch S. cerevesiae Highly Replicated Bulk RNA-Seq ", c("Counts", "Column Data")),
+    Description = paste0(c("Count matrix", "Per sample metadata"),
+      " for a dataset that contains bulk RNA-sequencing data from 86 S. cerevisiae samples ",
       "in two conditions. It was originally done to benchmark the performance of ",
       "tools for differnential expression analysis. It comes from the paper by ",
       "Schurch et al. (2016). The first condition is the wild type. The ",

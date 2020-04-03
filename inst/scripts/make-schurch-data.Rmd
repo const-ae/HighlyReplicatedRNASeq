@@ -76,10 +76,9 @@ all_cnts <- bind_rows(wt_cnts, ko_cnts) %>%
 
 ```
 
-Turn the tidy dataset into a SummarizedExperiment
+Save the count matrix and the column data separately:
 
 ```{r}
-library(SummarizedExperiment)
 cnt_mat <-  all_cnts %>%
   mutate(name = paste0(Condition, "_", sprintf("%02i", replicate))) %>%
   dplyr::select(GeneName, Count, name) %>%
@@ -91,20 +90,19 @@ cnt_mat <-  all_cnts %>%
 col_data <- all_cnts %>%
   dplyr::select(file_name, condition = Condition, replicate) %>%
   mutate(name = paste0(condition, "_", sprintf("%02i", replicate))) %>% 
-  distinct
+  distinct %>%
+  as.data.frame()
 
 
-se <- SummarizedExperiment(SimpleList(counts = cnt_mat), 
-                           colData = as.data.frame(col_data))
-
-se
 ```
 
 
 ```{r}
-repath <- file.path("final_data", "schurch")
-dir.create(repath, showWarnings=FALSE, recursive=TRUE)
-saveRDS(se, file=file.path(repath, "summarized_experiment.rds"))
+outpath <- file.path("final_data", "schurch")
+dir.create(outpath, showWarnings=FALSE, recursive=TRUE)
+
+saveRDS(cnt_mat, file.path(outpath, "count_matrix.rds"))
+saveRDS(col_data, file.path(outpath, "column_data.rds"))
 ```
 
 
