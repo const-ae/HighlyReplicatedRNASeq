@@ -14,8 +14,9 @@ License: MIT
 Encoding: UTF-8
 Depends:
     SummarizedExperiment,
-    S4Vectors,
     ExperimentHub
+Imports:
+    S4Vectors
 Suggests:
     BiocStyle,
     BiocFileCache,
