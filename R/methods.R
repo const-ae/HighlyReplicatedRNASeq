@@ -46,7 +46,7 @@
 Schurch16 <- function(hub = ExperimentHub()){
   count_matrix <- hub[["EH3315"]]
   col_data <- hub[["EH3316"]]
-  se <- SummarizedExperiment(SimpleList(counts = count_matrix),
+  se <- SummarizedExperiment(S4Vectors::SimpleList(counts = count_matrix),
                               colData = col_data)
   se
 }

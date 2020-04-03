@@ -14,6 +14,7 @@ License: MIT
 Encoding: UTF-8
 Depends:
     SummarizedExperiment,
+    S4Vectors,
     ExperimentHub
 Suggests:
     BiocStyle,
