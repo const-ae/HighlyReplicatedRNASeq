@@ -21,7 +21,7 @@ write.csv(file="../extdata/metadata-schurch.csv",
     Coordinate_1_based = NA,
     DataProvider = "Geoff Barton's group on GitHub",
     Maintainer = "Constantin Ahlmann-Eltze <artjom31415@googlemail.com>",
-    RDataClass = "SummarizedExperiment",
+    RDataClass = c("matrix", "data.frame"),
     DispatchClass = "Rds",
     RDataPath = "HighlyReplicatedRNASeq/",
 
