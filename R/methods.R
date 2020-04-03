@@ -44,13 +44,17 @@
 #'     tool should you use? \emph{RNA}, 22(6), 839–851. https://doi.org/10.1261/rna.053959.115
 #' @export
 Schurch16 <- function(hub = ExperimentHub()){
-  hub[["EH3299"]]
+  count_matrix <- hub[["EH3315"]]
+  col_data <- hub[["EH3316"]]
+  se <- SummarizedExperiment(SimpleList(counts = count_matrix),
+                              colData = col_data)
+  se
 }
 
 #' @rdname Schurch16
 #' @export
 Schurch16_metadata <- function(hub = ExperimentHub()){
-  hub["EH3299"]
+  hub["EH3315"]
 }
 
 
