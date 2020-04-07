@@ -10,7 +10,7 @@ Description: Gene-level count matrix data for bulk RNA-seq dataset with
     from https://github.com/bartongroup/profDGE48.
 URL: https://github.com/const-ae/HighlyReplicatedRNASeq
 BugReports: https://github.com/const-ae/HighlyReplicatedRNASeq/issues
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 Depends:
     SummarizedExperiment,
